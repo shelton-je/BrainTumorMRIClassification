@@ -99,7 +99,7 @@ class Generator(nn.Module):
         self.fade_iters = 0
         self.upsample = nn.Upsample(scale_factor=2, mode='nearest')
         self.current_net = nn.ModuleList([G_Block(latent_size, latent_size, initial_block=True)])
-        self.toRGBs = nn.ModuleList([ToRGB(latent_size, 1)])
+        self.toRGBs = nn.ModuleList([ToRGB(latent_size, 3)])
         # __add_layers(out_res)
         for d in range(2, int(np.log2(out_res))):
             if d < 6:
@@ -109,7 +109,7 @@ class Generator(nn.Module):
                 ## from 64x64(5th block), the number of channels halved for each block
                 in_ch, out_ch = int(512 / 2 ** (d - 6)), int(512 / 2 ** (d - 5))
             self.current_net.append(G_Block(in_ch, out_ch))
-            self.toRGBs.append(ToRGB(out_ch, 1))
+            self.toRGBs.append(ToRGB(out_ch, 3))
 
     def forward(self, x):
         for block in self.current_net[:self.depth - 1]:
@@ -143,14 +143,14 @@ class Discriminator(nn.Module):
         self.downsample = nn.AvgPool2d(kernel_size=(2, 2), stride=(2, 2))
 
         self.current_net = nn.ModuleList([D_Block(latent_size, latent_size, initial_block=True)])
-        self.fromRGBs = nn.ModuleList([FromRGB(1, latent_size)])
+        self.fromRGBs = nn.ModuleList([FromRGB(3, latent_size)])
         for d in range(2, int(np.log2(out_res))):
             if d < 6:
                 in_ch, out_ch = 512, 512
             else:
                 in_ch, out_ch = int(512 / 2 ** (d - 5)), int(512 / 2 ** (d - 6))
             self.current_net.append(D_Block(in_ch, out_ch))
-            self.fromRGBs.append(FromRGB(1, in_ch))
+            self.fromRGBs.append(FromRGB(3, in_ch))
 
     def forward(self, x_rgb):
         x = self.fromRGBs[self.depth - 1](x_rgb)

@@ -30,7 +30,7 @@ def main():
     # tumor_dataloader = DataLoader(tumor_dataset, batch_size=16, shuffle=True, num_workers=4)
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--epochs', type=int, default=40, help='training epoch number')
+    parser.add_argument('--epochs', type=int, default=200, help='training epoch number')
     parser.add_argument('--out_res', type=int, default=128, help='The resolution of final output image')
     parser.add_argument('--resume', type=int, default=0, help='continues from epoch number')
     parser.add_argument('--cuda', action='store_true', help='Using GPU to train')
@@ -59,8 +59,8 @@ def main():
     lambd = 10
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
     transform = transforms.Compose([
+        transforms.Grayscale(num_output_channels=3),
         transforms.Resize(out_res),
         transforms.CenterCrop(out_res),
         transforms.ToTensor(),
@@ -80,7 +80,6 @@ def main():
 
     D_epoch_losses = []
     G_epoch_losses = []
-    print(torch.cuda.is_available())
     if torch.cuda.device_count() > 1:
         print('Using ', torch.cuda.device_count(), 'GPUs')
         D_net = nn.DataParallel(D_net)
@@ -144,7 +143,7 @@ def main():
                 growing = schedule[2][0]
                 data_loader = DataLoader(dataset=dataset, batch_size=batch_size, shuffle=True, num_workers=8,
                                          drop_last=True)
-                tot_iter_num = tot_iter_num = (len(dataset) / batch_size)
+                tot_iter_num = (len(dataset) / batch_size)
                 G_net.growing_net(growing * tot_iter_num)
                 D_net.growing_net(growing * tot_iter_num)
                 size = 2 ** (G_net.depth + 1)
@@ -154,6 +153,7 @@ def main():
         databar = tqdm(data_loader)
 
         for i, samples in enumerate(databar):
+
             ##  update D
             if size != out_res:
                 samples = F.interpolate(samples[0], size=size).to(device)
