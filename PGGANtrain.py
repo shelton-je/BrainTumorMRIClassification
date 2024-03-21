@@ -207,7 +207,7 @@ def main():
             if i % 500 == 0:
                 D_running_loss /= iter_num
                 G_running_loss /= iter_num
-                print('iteration : %d, gp: %.2f' % (i, gradient_penalty))
+                print('IIteration : %d, gp: %.2f' % (i, gradient_penalty))
                 databar.set_description('D_loss: %.3f   G_loss: %.3f' % (D_running_loss, G_running_loss))
                 iter_num = 0
                 D_running_loss = 0.0
