@@ -17,12 +17,7 @@ from PGGANmodel import Generator, Discriminator
 def main():
     data_dir = 'Brain_MRI_Images\\Train'
 
-    # # load and preproccess the data
-    # dataset = dset.ImageFolder(data_dir, transform=transforms.Compose([
-    #     transforms.Resize(256),
-    #     transforms.ToTensor(),
-    #     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
-    # ]))
+
     # normal_dataset = torch.utils.data.Subset(dataset, range(0, 136))
     # normal_dataloader = DataLoader(normal_dataset, batch_size=16, shuffle=True, num_workers=4)
     #
@@ -30,12 +25,15 @@ def main():
     # tumor_dataloader = DataLoader(tumor_dataset, batch_size=16, shuffle=True, num_workers=4)
 
     parser = argparse.ArgumentParser()
+    parser.add_argument('--model',type=str, default='normal', help='model to train')
     parser.add_argument('--epochs', type=int, default=200, help='training epoch number')
     parser.add_argument('--out_res', type=int, default=128, help='The resolution of final output image')
     parser.add_argument('--resume', type=int, default=0, help='continues from epoch number')
     parser.add_argument('--cuda', action='store_true', help='Using GPU to train')
 
     opt = parser.parse_args()
+
+
 
     root = './'
     check_point_dir = root + 'check_points/'
@@ -54,7 +52,7 @@ def main():
     growing = schedule[2][0]
     epochs = opt.epochs
     latent_size = 512
-    out_res = 256
+    out_res = opt.out_res
     lr = 1e-4
     lambd = 10
 
