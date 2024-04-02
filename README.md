@@ -5,7 +5,7 @@ With this project we hope to increase the sensitivity and accuracy in our model 
 Clone Nvidias's offical pytorch repo https://github.com/NVlabs/stylegan3 
 Follow there readme.md for setting up enviroment and dependinces 
 Use their file gen_images.py with our trained networks to generate images 
-### EXAMPLE LINE GENERATING IMAGES:
+### Example lines for generating images:
 - python gen_images.py --network \tumor_weights.pkl --noise-mode random --outdir \output-dir --seeds 10-110
 - python gen_images.py --network \normal_weights.pkl --noise-mode random --outdir \output-dir --seeds 210-310
 
