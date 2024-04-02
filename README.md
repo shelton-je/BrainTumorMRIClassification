@@ -2,7 +2,7 @@
 With this project we hope to increase the sensitivity and accuracy in our model to correctly identify the presence of a tumor in a MR image over normal approaches, such as only using a CNN with no extra data or other basic classification methods.
 
 # Methods
-## Generating fake images for data augmentation 
+### Generating fake images for data augmentation 
 - Clone Nvidias's offical pytorch repo https://github.com/NVlabs/stylegan3 
 - Follow there readme.md for setting up enviroment and dependinces 
 - Use their file gen_images.py with our trained networks to generate images 
