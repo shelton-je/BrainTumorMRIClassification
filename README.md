@@ -14,6 +14,3 @@ https://www.kaggle.com/datasets/mhantor/mri-based-brain-tumor-images
 
 # Trained Stylgan3 networks for generating fake tumor/normal images
 https://drive.google.com/drive/folders/1UBhrHxwNu4fwmg0dEso-pECfL2W83ZSg?usp=sharing
-
-# Example fake images using StyleGan3 networks above
-https://drive.google.com/drive/folders/1H3yIy3vi6Yvp4QUhBotq4qxmnDnT_n--?usp=sharing
