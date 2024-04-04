@@ -10,7 +10,7 @@ import argparse
 # Initialize the parser
 parser = argparse.ArgumentParser(description='transfer learning with augmented data or only reals')
 
-# Add the --type argument
+
 parser.add_argument('--type', type=str, choices=['augment', 'normal'],
                     help='Type of operation to perform', required=True)
 
@@ -19,7 +19,8 @@ args = parser.parse_args()
 
 TRAIN_PATH = ''
 VALID_PATH = ''
-# Use the arguments in your script
+
+# Use the arguments 
 if args.type == 'augment':
     TRAIN_PATH = 'Training_data_with_fakes'
     VALID_PATH = 'Training_data_with_fakes'
