@@ -15,3 +15,10 @@ https://www.kaggle.com/datasets/mhantor/mri-based-brain-tumor-images
 
 # Trained Stylgan3 networks for generating fake tumor/normal images
 https://drive.google.com/drive/folders/1UBhrHxwNu4fwmg0dEso-pECfL2W83ZSg?usp=sharing
+### Training parameters
+- discriminator-gamma = .2
+- batch = 16 (can do 32 if you have something like a a100 or better)
+- cdg = stylegan3-t
+- cbase = 16384
+- snap = 10
+- training time = 23 hours for both networks
