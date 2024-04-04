@@ -8,7 +8,7 @@ from tensorflow.keras.optimizers import Adam
 import argparse
 
 # Initialize the parser
-parser = argparse.ArgumentParser(description='Process some inputs.')
+parser = argparse.ArgumentParser(description='transfer learning with augmented data or only reals')
 
 # Add the --type argument
 parser.add_argument('--type', type=str, choices=['augment', 'normal'],
