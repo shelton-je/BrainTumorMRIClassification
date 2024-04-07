@@ -22,3 +22,4 @@ https://drive.google.com/drive/folders/1UBhrHxwNu4fwmg0dEso-pECfL2W83ZSg?usp=sha
 - cbase = 16384
 - snap = 10
 - training time = 23 hours for both networks
+- Tensorflow Version 2.15
