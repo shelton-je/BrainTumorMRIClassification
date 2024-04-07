@@ -22,14 +22,14 @@ VALID_PATH = ''
 
 # Use the arguments 
 if args.type == 'augment':
-    TRAIN_PATH = 'Brain_MRI_Images/Train'
-    VALID_PATH = 'Training_data_with_fakes'
+    TRAIN_PATH = 'Training_data_with_fakes'
+    VALID_PATH = 'Brain_MRI_Images/Validation'
 elif args.type == 'normal':
     TRAIN_PATH = 'Brain_MRI_Images/Train'
     VALID_PATH = 'Brain_MRI_Images/Validation'
 elif args.type == 'generated':
     TRAIN_PATH = 'Brain_MRI_Images/Train'
-    VALID_PATH = 'Generated_Data'
+    VALID_PATH = 'Brain_MRI_Images/Validation'
 
 CATEGORIES = {
     'Tumor': '1',
@@ -74,7 +74,7 @@ validation_generator = datagen.flow_from_dataframe(
     x_col="path",
     y_col="label",
     target_size=(224, 224),
-    batch_size=8,
+    batch_size=32,
     class_mode='binary'
 )
 
@@ -102,5 +102,5 @@ history = model.fit(
     steps_per_epoch=train_generator.samples // train_generator.batch_size,
     validation_data=validation_generator,
     validation_steps=validation_generator.samples // validation_generator.batch_size,
-    epochs=11
+    epochs=10
 )
