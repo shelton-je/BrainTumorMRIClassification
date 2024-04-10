@@ -1,5 +1,5 @@
-# BrainTumorMIClassification
-With this project we hope to increase the sensitivity and accuracy in our model to correctly identify the presence of a tumor in a MR image over normal approaches, such as only using a CNN with no extra data or other basic classification methods.
+# BrainTumorMRIClassification
+With this project we hope to increase the sensitivity and accuracy in our model to correctly identify the presence of a tumor in a MR image by using a combination of a GAN and transfer learning over normal approaches, such as only using a CNN with no extra data or other basic classification methods.
 
 # Methods
 ### Generating fake images for data augmentation 
