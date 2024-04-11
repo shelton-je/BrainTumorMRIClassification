@@ -19,6 +19,7 @@ https://drive.google.com/drive/folders/1UBhrHxwNu4fwmg0dEso-pECfL2W83ZSg?usp=sha
 - discriminator-gamma = .2
 - batch = 16 (can do 32 if you have something like a a100 or better)
 - cdg = stylegan3-t
+- mirror = True
 - cbase = 16384
 - snap = 10
 - training time = 23 hours for both networks
