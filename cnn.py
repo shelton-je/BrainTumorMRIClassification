@@ -4,26 +4,24 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
 from tensorflow.keras.optimizers import Adam
+import matplotlib.pyplot as plt
 import argparse
 
 # Initialize the parser
 parser = argparse.ArgumentParser(description='CNN with augmented data or only reals')
 
-parser.add_argument('--type', type=str, choices=['augment', 'normal', 'generated'], help='Type of operation to perform', required=True)
+parser.add_argument('--type', type=str, choices=['augment', 'normal'], help='Type of operation to perform', required=True)
 
 # Parse the arguments
 args = parser.parse_args()
 
 # Use the arguments
 if args.type == 'augment':
-    TRAIN_PATH = 'Brain_MRI_Images/Train'
-    VALID_PATH = 'Training_data_with_fakes'
+    TRAIN_PATH = 'Training_data_with_fakes'
+    VALID_PATH = 'Brain_MRI_Images/Validation'
 elif args.type == 'normal':
     TRAIN_PATH = 'Brain_MRI_Images/Train'
     VALID_PATH = 'Brain_MRI_Images/Validation'
-elif args.type == 'generated':
-    TRAIN_PATH = 'Brain_MRI_Images/Train'
-    VALID_PATH = 'Generated_Data'
 
 # Categories
 CATEGORIES = {

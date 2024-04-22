@@ -5,13 +5,14 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Flatten, Dense, Dropout
 from tensorflow.keras.optimizers import Adam
+import matplotlib.pyplot as plt
 import argparse
 
 # Initialize the parser
 parser = argparse.ArgumentParser(description='transfer learning with augmented data or only reals')
 
 
-parser.add_argument('--type', type=str, choices=['augment', 'normal', 'generated'],
+parser.add_argument('--type', type=str, choices=['augment', 'normal'],
                     help='Type of operation to perform', required=True)
 
 # Parse the arguments
@@ -25,9 +26,6 @@ if args.type == 'augment':
     TRAIN_PATH = 'Training_data_with_fakes'
     VALID_PATH = 'Brain_MRI_Images/Validation'
 elif args.type == 'normal':
-    TRAIN_PATH = 'Brain_MRI_Images/Train'
-    VALID_PATH = 'Brain_MRI_Images/Validation'
-elif args.type == 'generated':
     TRAIN_PATH = 'Brain_MRI_Images/Train'
     VALID_PATH = 'Brain_MRI_Images/Validation'
 
